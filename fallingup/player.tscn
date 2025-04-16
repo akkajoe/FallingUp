@@ -1,16 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0t18212hqisf"]
+[gd_scene load_steps=6 format=3 uid="uid://d0t18212hqisf"]
 
 [ext_resource type="Script" uid="uid://c0l0tobynx82v" path="res://player.gd" id="1_4flbx"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+emission_enabled = true
+emission = Color(0.298039, 0, 0, 1)
+emission_energy_multiplier = 0.1
+
 [sub_resource type="SphereMesh" id="SphereMesh_onrkg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
+emission_enabled = true
+emission = Color(0.52549, 0.258824, 0.196078, 1)
+emission_energy_multiplier = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 
 [node name="player" type="CharacterBody3D"]
+collision_layer = 3
 script = ExtResource("1_4flbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="playerMesh" type="MeshInstance3D" parent="Node3D"]
+material_override = SubResource("StandardMaterial3D_onrkg")
+transparency = 0.1
 mesh = SubResource("SphereMesh_onrkg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_i3pqv")

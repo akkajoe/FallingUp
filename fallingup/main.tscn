@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt7bru4vgfcrs"]
+[gd_scene load_steps=11 format=3 uid="uid://bt7bru4vgfcrs"]
 
+[ext_resource type="Script" uid="uid://jq3ljq0473cl" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d0t18212hqisf" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dweahnxiuomdv" path="res://camera_3d.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dsfjg4mfp60nn" path="res://obstacle.tscn" id="4_1bvp3"]
 [ext_resource type="Shader" uid="uid://b5qb51jbwuvxu" path="res://main.gdshader" id="4_lquwl"]
-[ext_resource type="Texture2D" uid="uid://csafttn0nqssj" path="res://assets/bg/asfalt-light.png" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://oj7ihmalxths" path="res://assets/bg/R.jpeg" id="5_lquwl"]
+
+[sub_resource type="Environment" id="Environment_7mycd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7mycd"]
 size = Vector2(100, 1000)
@@ -13,9 +16,13 @@ size = Vector2(100, 1000)
 render_priority = 0
 shader = ExtResource("4_lquwl")
 shader_parameter/texture_albedo = ExtResource("5_lquwl")
-shader_parameter/scroll_speed = 0.01
+shader_parameter/scroll_speed = 0.001
+
+[sub_resource type="Environment" id="Environment_272bh"]
+glow_enabled = true
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_7mycd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -24,6 +31,7 @@ shadow_enabled = true
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_7mycd")
 script = ExtResource("3_h2yge")
 target_path = NodePath("../player")
 offset = Vector3(0, 0, -5)
@@ -31,13 +39,10 @@ offset = Vector3(0, 0, -5)
 [node name="obstacle" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0623827, 3.13594, -0.0392218)
 
-[node name="obstacle2" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26792, 2.59636, 1.50156)
-
-[node name="obstacle3" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(0.627651, 0, -0.778495, 0, 1, 0, 0.778495, 0, 0.627651, 2.86508, 2.59636, -0.302501)
-
 [node name="BackgroundPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_7mycd")
 surface_material_override/0 = SubResource("ShaderMaterial_272bh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_272bh")
