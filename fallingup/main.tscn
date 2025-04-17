@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bt7bru4vgfcrs"]
+[gd_scene load_steps=10 format=3 uid="uid://bt7bru4vgfcrs"]
 
 [ext_resource type="Script" uid="uid://jq3ljq0473cl" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d0t18212hqisf" path="res://player.tscn" id="1_ig7tw"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dsfjg4mfp60nn" path="res://obstacle.tscn" id="4_1bvp3"]
 [ext_resource type="Shader" uid="uid://b5qb51jbwuvxu" path="res://main.gdshader" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://oj7ihmalxths" path="res://assets/bg/R.jpeg" id="5_lquwl"]
-
-[sub_resource type="Environment" id="Environment_7mycd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7mycd"]
 size = Vector2(100, 1000)
@@ -20,6 +18,9 @@ shader_parameter/scroll_speed = 0.001
 
 [sub_resource type="Environment" id="Environment_272bh"]
 glow_enabled = true
+glow_intensity = 0.25
+glow_strength = 0.0
+glow_blend_mode = 0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_7mycd")
@@ -31,7 +32,6 @@ shadow_enabled = true
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-environment = SubResource("Environment_7mycd")
 script = ExtResource("3_h2yge")
 target_path = NodePath("../player")
 offset = Vector3(0, 0, -5)
@@ -46,3 +46,5 @@ surface_material_override/0 = SubResource("ShaderMaterial_272bh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_272bh")
+
+[connection signal="body_entered" from="obstacle" to="." method="_on_obstacle_body_entered"]

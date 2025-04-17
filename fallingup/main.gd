@@ -16,3 +16,7 @@ func spawn_chunk():
 	var chunk = chunk_scene.instantiate()
 	add_child(chunk)
 	chunk.position.y = max_y_position
+
+func _on_obstacle_body_entered(body: Node) -> void:
+	# this will be called when the player hits an obstacle
+	print("Collision with:", body.name)
