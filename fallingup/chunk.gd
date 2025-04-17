@@ -1,9 +1,9 @@
 # chunk.gd  (attach to each Chunk scene root; Node3D)
 extends Node3D
 
-@export var chunk_height: float         = 100.0
-@export var obstacle_scene: PackedScene = preload("res://obstacle.tscn")
-@export var obstacles_per_chunk: int   = 800
+@export var chunk_height  = 100.0
+@export var obstacle_scene = preload("res://obstacle.tscn")
+@export var obstacles_per_chunk = 800
 
 # shared across all chunks, only for spacing checks:
 static var global_positions: Array[Vector3] = []
