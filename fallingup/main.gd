@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @export var chunk_scene: PackedScene = preload("res://chunk.tscn")
 @export var chunk_spacing = 80.0
 

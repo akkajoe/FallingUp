@@ -1,16 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0t18212hqisf"]
+[gd_scene load_steps=6 format=3 uid="uid://d0t18212hqisf"]
 
 [ext_resource type="Script" uid="uid://c0l0tobynx82v" path="res://player.gd" id="1_4flbx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
-shading_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
 shading_mode = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_4flbx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 
@@ -24,7 +21,6 @@ script = ExtResource("1_4flbx")
 material_override = SubResource("StandardMaterial3D_onrkg")
 material_overlay = SubResource("StandardMaterial3D_4flbx")
 mesh = SubResource("SphereMesh_4flbx")
-surface_material_override/0 = SubResource("StandardMaterial3D_i3pqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_i3pqv")

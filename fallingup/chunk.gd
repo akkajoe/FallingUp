@@ -1,4 +1,3 @@
-# chunk.gd  (attach to each Chunk scene root; Node3D)
 extends Node3D
 
 @export var chunk_height  = 100.0
@@ -8,11 +7,11 @@ extends Node3D
 # shared across all chunks, only for spacing checks:
 static var global_positions: Array[Vector3] = []
 
-func _ready() -> void:
+func _ready():
 	spawn_obstacles()
 
 
-func spawn_obstacles() -> void:
+func spawn_obstacles():
 	const SAFE_RADIUS = 4.0 # minimum safe radius between two obstacles
 	var placed_in_this_chunk = 0 # NUmber of obstacles successfully placed
 	var attempts = 0 # Number of tries
