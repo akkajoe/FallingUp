@@ -11,6 +11,7 @@ shading_mode = 0
 [sub_resource type="SphereMesh" id="SphereMesh_4flbx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
+shading_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 

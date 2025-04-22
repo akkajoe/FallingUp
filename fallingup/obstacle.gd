@@ -1,6 +1,6 @@
 extends Area3D
 
-func _ready() -> void:
+func _ready():
 	var handler = Callable(self, "_on_body_entered")
 	if not body_entered.is_connected(handler):
 		body_entered.connect(handler)
