@@ -1,8 +1,8 @@
 extends Node3D
 
-@export var chunk_height  = 100.0
+@export var chunk_height  = 300.0
 @export var obstacle_scene = preload("res://obstacle.tscn")
-@export var obstacles_per_chunk = 800
+@export var obstacles_per_chunk = 300
 
 # shared across all chunks, only for spacing checks:
 static var global_positions: Array[Vector3] = []

@@ -19,7 +19,7 @@ shader_parameter/scroll_speed = 0.001
 
 [sub_resource type="Environment" id="Environment_272bh"]
 glow_enabled = true
-glow_intensity = 0.25
+glow_intensity = 0.03
 glow_strength = 0.0
 glow_blend_mode = 0
 
