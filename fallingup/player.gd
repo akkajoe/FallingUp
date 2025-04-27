@@ -13,6 +13,9 @@ extends CharacterBody3D
 @onready var mesh = $Node3D/MeshInstance3D as MeshInstance3D
 @onready var world_env = get_tree().get_current_scene().get_node("WorldEnvironment") as WorldEnvironment
 
+# character movements
+@onready var acc_x = 2.0; # acceleration in the x-axis when the direction turns
+
 var state = "floating"
 var time_since_last_collect = 0.0
 
@@ -54,8 +57,6 @@ func _physics_process(delta):
 			world_env.environment.glow_strength - glow_fall_rate * delta,
 			0.0, glow_green_threshold
 		)
-	if is_on_floor():
-		print("On floor")
 	# ground‐hit timer
 	if state == "sinking" and is_on_floor():
 		if not _ground_contact_started:
@@ -66,7 +67,15 @@ func _physics_process(delta):
 			_ground_contact_time += delta
 			print("CHECK2")
 			if _ground_contact_time >= ground_delay:
-				state = "gameover"
+				#state = "gameover"
+				var my_velocity = Vector3(2.0, 2.0, 0)
+				print("my_velocity", my_velocity)
+				print("DELTA", delta)
+				var collision_info = move_and_collide(velocity*delta)
+				print(collision_info, "check")
+				#velocity = velocity.bounce(collision_info.normal)
+				#velocity.x = 0.9;
+				#velocity.y = 0.9;
 				override_mat.albedo_color = Color(1, 0, 0)
 				print("GAME OVER: on ground for %.1f s" % ground_delay)
 		return
