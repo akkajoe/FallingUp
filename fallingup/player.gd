@@ -38,6 +38,7 @@ var gravity                  = ProjectSettings.get_setting("physics/3d/default_g
 
 func _ready():
 	name = "player"
+	$player.rotation_degrees.y = 90;
 	# Collect every MeshInstance3D under this node and override its material
 	for m in get_children():
 		if m is MeshInstance3D:
