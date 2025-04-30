@@ -27,6 +27,7 @@ height = 0.86
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.215209, -0.553509, 0.00626993)
 node_a = NodePath("../torso")
 node_b = NodePath("../rightleg")
+angular_limit/enable = true
 angular_limit/upper = 0.261799
 angular_limit/lower = -0.261799
 angular_limit/bias = 0.99
@@ -35,6 +36,7 @@ angular_limit/bias = 0.99
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259567, -0.00313929, 0.000431538)
 node_a = NodePath("../torso")
 node_b = NodePath("../leftarm")
+angular_limit/enable = true
 angular_limit/upper = 0.261799
 angular_limit/lower = -0.261799
 angular_limit/bias = 0.99
@@ -43,6 +45,7 @@ angular_limit/bias = 0.99
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.230457, -0.560054, 0.00864697)
 node_a = NodePath("../torso")
 node_b = NodePath("../legleft")
+angular_limit/enable = true
 angular_limit/upper = 0.261799
 angular_limit/lower = -0.261799
 angular_limit/bias = 0.99
@@ -58,7 +61,7 @@ transform = Transform3D(2.101, 0, 0, 0, 2.101, 0, 0, 0, 2.101, 0.171235, -1.4331
 shape = SubResource("CapsuleShape3D_uytnn")
 
 [node name="Sprite3D" type="Sprite3D" parent="rightleg"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160149, -1.24269, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16, -1.243, 0.03)
 texture = ExtResource("1_uytnn")
 
 [node name="torso" type="RigidBody3D" parent="."]
@@ -73,7 +76,7 @@ axis_lock_angular_z = true
 mass = 0.036
 
 [node name="Sprite3D" type="Sprite3D" parent="torso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021235, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0, 0.02)
 texture = ExtResource("1_s1edl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="torso"]
@@ -111,6 +114,7 @@ shape = SubResource("CapsuleShape3D_ye125")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264334, -0.00501378, 0.00423479)
 node_a = NodePath("../torso")
 node_b = NodePath("../rightarm")
+angular_limit/enable = true
 angular_limit/upper = 0.261799
 angular_limit/lower = -0.261799
 angular_limit/bias = 0.99
