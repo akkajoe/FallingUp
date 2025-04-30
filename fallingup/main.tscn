@@ -31,17 +31,20 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 6.47869, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.854998, 6.3364, 10.8306)
 script = ExtResource("3_h2yge")
 target_path = NodePath("../player")
-offset = Vector3(0, 0, -5)
+offset = Vector3(0, 0, -7)
 
 [node name="obstacle" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0623827, 3.13594, -0.0392218)
 
 [node name="BackgroundPlane" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 3)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_7mycd")
 surface_material_override/0 = SubResource("ShaderMaterial_272bh")
 
@@ -49,5 +52,3 @@ surface_material_override/0 = SubResource("ShaderMaterial_272bh")
 environment = SubResource("Environment_272bh")
 
 [node name="ground" parent="." instance=ExtResource("7_272bh")]
-
-[connection signal="body_entered" from="obstacle" to="." method="_on_obstacle_body_entered"]

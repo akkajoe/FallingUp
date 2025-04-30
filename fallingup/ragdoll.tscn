@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://kwif2ccc4xnf"]
+
+[ext_resource type="Texture2D" uid="uid://011s8vivldx3" path="res://assets/char/body.png" id="1_s1edl"]
+[ext_resource type="Texture2D" uid="uid://dwhm1dx6yq4am" path="res://assets/char/rightleg.png" id="1_uytnn"]
+[ext_resource type="Texture2D" uid="uid://dfmkli3wj4jlo" path="res://assets/char/leftleg.png" id="2_i0bs4"]
+[ext_resource type="Texture2D" uid="uid://dh7dvpc3a67p8" path="res://assets/char/rightarm.png" id="4_ye125"]
+[ext_resource type="Texture2D" uid="uid://dq8g4n16ftewr" path="res://assets/char/leftarm.png" id="5_tvtuo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uytnn"]
+radius = 0.07
+height = 0.849372
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1edl"]
+size = Vector3(0.544, 1.37866, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ye125"]
+radius = 0.11
+height = 0.86
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yj41e"]
+radius = 0.11
+height = 0.86
+
+[node name="ragdoll" type="Node3D"]
+
+[node name="HingeJoint3D2" type="HingeJoint3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.215209, -0.553509, 0.00626993)
+node_a = NodePath("../torso")
+node_b = NodePath("../rightleg")
+angular_limit/upper = 0.261799
+angular_limit/lower = -0.261799
+angular_limit/bias = 0.99
+
+[node name="HingeJoint3D4" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259567, -0.00313929, 0.000431538)
+node_a = NodePath("../torso")
+node_b = NodePath("../leftarm")
+angular_limit/upper = 0.261799
+angular_limit/lower = -0.261799
+angular_limit/bias = 0.99
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.230457, -0.560054, 0.00864697)
+node_a = NodePath("../torso")
+node_b = NodePath("../legleft")
+angular_limit/upper = 0.261799
+angular_limit/lower = -0.261799
+angular_limit/bias = 0.99
+motor/max_impulse = 0.02
+
+[node name="rightleg" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 0.009
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rightleg"]
+transform = Transform3D(2.101, 0, 0, 0, 2.101, 0, 0, 0, 2.101, 0.171235, -1.43311, -0.12717)
+shape = SubResource("CapsuleShape3D_uytnn")
+
+[node name="Sprite3D" type="Sprite3D" parent="rightleg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160149, -1.24269, 0)
+texture = ExtResource("1_uytnn")
+
+[node name="torso" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.036
+
+[node name="Sprite3D" type="Sprite3D" parent="torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021235, 0, 0)
+texture = ExtResource("1_s1edl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00379017, 0.157091, 0)
+shape = SubResource("BoxShape3D_s1edl")
+
+[node name="legleft" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.529)
+collision_layer = 2
+collision_mask = 2
+mass = 0.009
+
+[node name="Sprite3D" type="Sprite3D" parent="legleft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21194, -1.24426, -6.54845)
+texture = ExtResource("2_i0bs4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="legleft"]
+transform = Transform3D(2.005, 0, 0, 0, 2.005, 0, 0, 0, 2.005, -0.2118, -1.39919, -6.51274)
+shape = SubResource("CapsuleShape3D_uytnn")
+
+[node name="rightarm" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 0.009
+
+[node name="Sprite3D" type="Sprite3D" parent="rightarm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500182, -0.237636, -0.0126872)
+texture = ExtResource("4_ye125")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rightarm"]
+transform = Transform3D(0.91706, -0.398749, 0, 0.398749, 0.91706, 0, 0, 0, 1, 0.529078, -0.289518, -0.00255871)
+shape = SubResource("CapsuleShape3D_ye125")
+
+[node name="HingeJoint3D3" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264334, -0.00501378, 0.00423479)
+node_a = NodePath("../torso")
+node_b = NodePath("../rightarm")
+angular_limit/upper = 0.261799
+angular_limit/lower = -0.261799
+angular_limit/bias = 0.99
+
+[node name="leftarm" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 0.009
+
+[node name="Sprite3D" type="Sprite3D" parent="leftarm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529008, -0.244163, 0)
+texture = ExtResource("5_tvtuo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="leftarm"]
+transform = Transform3D(0.91706, 0.398749, 0, -0.398749, 0.91706, 0, 0, 0, 1, -0.501428, -0.231727, 0)
+shape = SubResource("CapsuleShape3D_yj41e")

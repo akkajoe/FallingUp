@@ -2,19 +2,29 @@
 
 [ext_resource type="Script" uid="uid://y4y51ockaqty" path="res://obstacle.gd" id="1_sl1jc"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_qcbvg"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl1jc"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qcbvg"]
+
 [node name="obstacle" type="Area3D"]
+collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_sl1jc")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_sl1jc")
+debug_color = Color(0.403922, 0.0705882, 0.133333, 1)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 3
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_qcbvg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sl1jc")
 debug_color = Color(0.403922, 0.0705882, 0.133333, 1)
 

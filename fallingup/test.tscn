@@ -1,19 +1,32 @@
 [gd_scene load_steps=4 format=3 uid="uid://ic5ryofrffxs"]
 
-[ext_resource type="PackedScene" uid="uid://d0t18212hqisf" path="res://player.tscn" id="1_37kl0"]
-[ext_resource type="Script" uid="uid://dweahnxiuomdv" path="res://camera_3d.gd" id="2_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://kwif2ccc4xnf" path="res://ragdoll.tscn" id="2_8uh7m"]
 
-[sub_resource type="Environment" id="Environment_8uh7m"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_8uh7m"]
+size = Vector2(1000, 200)
 
-[node name="test" type="Node3D"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_37kl0"]
+data = PackedVector3Array(500, 0, 100, -500, 0, 100, 500, 0, -100, -500, 0, 100, -500, 0, -100, 500, 0, -100)
 
-[node name="player" parent="." instance=ExtResource("1_37kl0")]
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ragdoll" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.0359, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_8uh7m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_37kl0")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-current = true
-script = ExtResource("2_8uh7m")
-target_path = NodePath("../player")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8uh7m")
+transform = Transform3D(-0.996873, 0.0161868, -0.0773488, 0.0110436, 0.997728, 0.066464, 0.0782489, 0.0654019, -0.994786, 6.18061, 32.4561, -10.1665)
+fov = 128.819
