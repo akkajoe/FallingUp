@@ -38,6 +38,30 @@ var spin_fall = false
 
 func _ready():
 	name = "player"
+
+	# ✅ RESET GAME STATE
+	state = "floating"
+	time_since_last_collect = 0.0
+	_ground_contact_started = false
+	_ground_contact_time = 0.0
+	in_knockback = false
+	knockback_velocity = 0.0
+	knockback_timer = 0.0
+	current_turn_speed = 0.0
+	ragdoll_started = false
+	collided_with_obstacle = false
+	spin_fall = false
+	velocity = Vector3.ZERO
+
+	# Reset material color
+	_set_color(Color(1, 1, 1))
+
+	# Reset glow strength
+	if world_env and world_env.environment:
+		world_env.environment.glow_strength = 0.0
+
+	# Refresh override materials
+	override_mats.clear()
 	for m in get_children():
 		if m is MeshInstance3D:
 			var orig = m.mesh.surface_get_material(0) as StandardMaterial3D
@@ -46,6 +70,7 @@ func _ready():
 			var dup = orig.duplicate() as StandardMaterial3D
 			m.set_surface_override_material(0, dup)
 			override_mats.append(dup)
+
 
 func _set_color(c) -> void:
 	for mat in override_mats:
@@ -79,12 +104,21 @@ func _physics_process(delta):
 		time_since_last_collect = 0.0
 
 	# WIN (green) check
+	# WIN (green) check
 	if state != "gameover" and world_env.environment.glow_strength >= glow_green_threshold:
 		state = "gameover"
 		_set_color(Color(0,1,0))
 		velocity = Vector3.ZERO
 		move_and_slide()
+
+		print("You win! Restarting...")
+		await get_tree().create_timer(2.0).timeout  # optional delay before restart
+		var main = get_tree().current_scene
+		main.reset_game()
+		_ready()  # reinitialize player
+
 		return
+
 
 	# Freeze if gameover
 	if state == "gameover":

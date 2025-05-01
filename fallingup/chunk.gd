@@ -1,4 +1,5 @@
 extends Node3D
+class_name Chunk
 
 @export var chunk_height  = 300.0
 @export var obstacle_scene = preload("res://obstacle.tscn")
